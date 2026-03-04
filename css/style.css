@@ -129,6 +129,7 @@ body {
 }
 
 .hero .content p {
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 1.4rem;
   margin-top: 1rem;
   line-height: 1.4;
@@ -206,6 +207,7 @@ body {
 
 .produk p,
 .contact p {
+  font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   max-width: 30rem;
   margin: auto;
