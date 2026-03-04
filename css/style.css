@@ -199,7 +199,7 @@ body {
   line-height: 2.1;
 }
 
-/* Menu Section */
+/* Produk Section */
 .produk h2,
 .contact h2 {
   margin-bottom: 1rem;
@@ -207,7 +207,6 @@ body {
 
 .produk p,
 .contact p {
-  font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   max-width: 30rem;
   margin: auto;
