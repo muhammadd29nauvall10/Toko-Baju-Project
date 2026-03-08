@@ -20,10 +20,6 @@ html {
 body {
   font-family: "Poppins", sans-serif;
   color: var(--text-main);
-  background: url("../img/bg.jpg");
-  background-repeat: repeat;
-  background-size: 150px;
-  background-attachment: fixed;
   background-color: var(--bg);
 }
 
@@ -90,16 +86,47 @@ body {
   display: none;
 }
 
+/* Navbar Search form */
+.navbar .search-form {
+  position: absolute;
+  top: 100%;
+  right: 7%;
+  background-color: var(--bg);
+  width: 50rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: 0.3s;
+}
+
+.navbar .search-form.active {
+  transform: scaleY(1);
+}
+
+.navbar .search-form #search-box {
+  height: 100%;
+  width: 100%;
+  font-size: 2.5rem;
+  background-color: var(--bg);
+  color: var(--text-main);
+  padding: 1rem;
+}
+
+.navbar .search-form label {
+  cursor: pointer;
+  font-size: 2rem;
+  margin-left: 1.5rem;
+  color: var(--text-main);
+}
+
 /* Hero Section */
 .hero {
   min-height: 100vh;
   display: flex;
   align-items: center;
   margin-top: 5.6rem;
-  background-image: url(../img/IMG_20260308_075844_223.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
   position: relative;
 }
 
@@ -149,21 +176,25 @@ body {
   display: inline-block;
   padding: 1rem 3rem;
   font-size: 1.4rem;
-  color: #010101;
+  color: var(--bg);
   background-color: var(--primary);
   border-radius: 0.5rem;
   box-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5);
 }
 
-/* About and Menu Section */
+.hero .content .cta:hover {
+  color: var(--text-main);
+}
+
+/* About, Products, and Contact Section */
 .about,
-.produk,
+.products,
 .contact {
   padding: 8rem 7% 1.4rem;
 }
 
 .about h2,
-.produk h2,
+.products h2,
 .contact h2 {
   color: #2d2d2d;
   text-align: center;
@@ -172,7 +203,7 @@ body {
 }
 
 .about h2 span,
-.produk h2 span,
+.products h2 span,
 .contact h2 span {
   color: var(--primary);
 }
@@ -206,13 +237,59 @@ body {
   line-height: 2.1;
 }
 
-/* Produk Section */
-.produk h2,
+/* products Section */
+.products .jilbab {
+  margin-top: 2.1rem;
+}
+.products .row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  /* kalau ukuran nya udah lebih kecil dari 30 rem bikin jadi 1 kolom dan kalau lebih besar bikin jadi kolom semuat nya */
+  gap: 1.5rem;
+  margin-top: 4rem;
+}
+
+.products .product-card {
+  text-align: center;
+  border: 1px solid #010101;
+  padding: 2rem;
+}
+
+.products .product-icons {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.products .product-icons a {
+  width: 4rem;
+  height: 4rem;
+  color: #010101;
+  border: 1px solid #010101;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.products .product-icons a:hover {
+  background-color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+.products .product-image {
+  padding: 1rem 0;
+}
+
+.products .product-image img {
+  height: 25rem;
+}
+
+/* Contact Section */
 .contact h2 {
   margin-bottom: 1rem;
 }
 
-.produk p,
 .contact p {
   text-align: center;
   max-width: 30rem;
@@ -222,29 +299,6 @@ body {
   line-height: 1.6;
 }
 
-.produk .row {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 5rem;
-  justify-content: center;
-}
-
-.produk .row .produk-card {
-  text-align: center;
-  padding-bottom: 3rem;
-}
-
-.produk .row .produk-card img {
-  border-radius: 50%;
-  width: 80%;
-}
-
-.produk .row .produk-card-title {
-  color: #2d2d2d;
-  margin-top: 1rem auto 0.5rem;
-}
-
-/* Contact Section */
 .contact .row {
   display: flex;
   margin-top: 2rem;
@@ -286,9 +340,13 @@ body {
   display: inline-block;
   padding: 1rem 3rem;
   font-size: 1.7rem;
-  color: #010101;
+  color: var(--bg);
   background-color: var(--primary);
   cursor: pointer;
+}
+
+.contact .row form .btn:hover {
+  color: var(--text-main);
 }
 
 /* Footer */
@@ -304,13 +362,13 @@ footer .socials {
 }
 
 footer .socials a {
-  color: #010101;
+  color: var(--bg);
   margin: 1rem;
 }
 
 footer .socials a:hover,
 footer .links a:hover {
-  color: var(--bg);
+  color: var(--text-main);
 }
 
 footer .links {
@@ -318,12 +376,13 @@ footer .links {
 }
 
 footer .links a {
-  color: #010101;
+  color: var(--bg);
   padding: 0.7rem 1rem;
 }
 
 footer .credit {
   font-size: 0.8rem;
+  color: var(--bg);
 }
 
 footer .credit a {
@@ -379,6 +438,11 @@ footer .credit a {
     transform: scaleX(0.2);
   }
 
+  .navbar .search-form {
+    width: 90%;
+    right: 2rem;
+  }
+
   .hero .content h1 {
     padding-right: 25rem;
   }
@@ -409,7 +473,7 @@ footer .credit a {
     font-size: 1.5rem;
   }
 
-  .produk p {
+  p {
     font-size: 1.5rem;
   }
 
