@@ -431,23 +431,4 @@ footer .credit a {
   html {
     font-size: 55%;
   }
-  .hero .content h1 {
-    position: relative;
-    bottom: 201px;
-    padding-right: 25rem;
-    font-size: 3.5rem;
-  }
-
-  .hero .content p {
-    position: relative;
-    bottom: 195px;
-    padding-right: 25rem;
-    font-size: 1.7rem;
-  }
-
-  .hero .content .cta {
-    position: relative;
-    bottom: 190px;
-    font-size: 1.9rem;
-  }
 }
