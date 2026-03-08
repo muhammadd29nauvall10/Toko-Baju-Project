@@ -1,6 +1,7 @@
 :root {
-  --primary: #fa67b8;
-  --bg: #010101;
+  --primary: #f25aae;
+  --bg: #fafafa;
+  --text-main: #2d2d2d;
 }
 
 * {
@@ -18,8 +19,12 @@ html {
 
 body {
   font-family: "Poppins", sans-serif;
+  color: var(--text-main);
+  background: url("../img/bg.jpg");
+  background-repeat: repeat;
+  background-size: 150px;
+  background-attachment: fixed;
   background-color: var(--bg);
-  color: #fff;
 }
 
 /* Navbar */
@@ -28,8 +33,8 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1.4rem 7%;
-  background-color: rgba(1, 1, 1, 0.8);
-  border-bottom: 1px solid #bc4f8b;
+  background-color: rgba(250, 250, 250, 0.9);
+  border-bottom: 1px solid var(--primary);
   position: fixed;
   top: 0;
   left: 0;
@@ -40,7 +45,7 @@ body {
 .navbar .navbar-logo {
   font-size: 2rem;
   font-weight: 700;
-  color: #fff;
+  color: #010101;
   font-style: italic;
 }
 
@@ -49,7 +54,7 @@ body {
 }
 
 .navbar .navbar-nav a {
-  color: #fff;
+  color: #2d2d2d;
   display: inline-block;
   font-size: 1.2rem;
   margin: 0 1rem;
@@ -73,7 +78,7 @@ body {
 }
 
 .navbar .navbar-extra a {
-  color: #fff;
+  color: #010101;
   margin: 0 0.5rem;
 }
 
@@ -91,7 +96,7 @@ body {
   display: flex;
   align-items: center;
   margin-top: 5.6rem;
-  background-image: url(../img/hitam-tanpa-tulisan.png);
+  background-image: url(../img/IMG_20260308_075844_223.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -103,12 +108,12 @@ body {
   display: block;
   position: absolute;
   width: 100%;
-  height: 30%;
+  height: 5%;
   bottom: 0;
   background: linear-gradient(
     0deg,
-    rgba(1, 1, 3, 1) 8%,
-    rgba(255, 255, 255, 0) 50%
+    rgba(250, 250, 250, 1) 0%,
+    rgba(250, 250, 250, 0) 100%
   );
 }
 
@@ -119,7 +124,7 @@ body {
 
 .hero .content h1 {
   font-size: 3rem;
-  color: #fff;
+  color: #2d2d2d;
   text-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5);
   line-height: 1.2;
 }
@@ -129,6 +134,7 @@ body {
 }
 
 .hero .content p {
+  color: #bebebe;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.4rem;
   margin-top: 1rem;
@@ -143,7 +149,7 @@ body {
   display: inline-block;
   padding: 1rem 3rem;
   font-size: 1.4rem;
-  color: #fff;
+  color: #010101;
   background-color: var(--primary);
   border-radius: 0.5rem;
   box-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5);
@@ -159,6 +165,7 @@ body {
 .about h2,
 .produk h2,
 .contact h2 {
+  color: #2d2d2d;
   text-align: center;
   font-size: 2.4rem;
   margin-bottom: 3rem;
@@ -233,6 +240,7 @@ body {
 }
 
 .produk .row .produk-card-title {
+  color: #2d2d2d;
   margin-top: 1rem auto 0.5rem;
 }
 
@@ -240,7 +248,7 @@ body {
 .contact .row {
   display: flex;
   margin-top: 2rem;
-  background-color: #222;
+  background-color: #f0f0f0;
 }
 
 .contact .row .map {
@@ -270,7 +278,7 @@ body {
   padding: 2rem;
   font-size: 1.7rem;
   background: none;
-  color: #fff;
+  color: #010101;
 }
 
 .contact .row form .btn {
@@ -278,7 +286,7 @@ body {
   display: inline-block;
   padding: 1rem 3rem;
   font-size: 1.7rem;
-  color: #fff;
+  color: #010101;
   background-color: var(--primary);
   cursor: pointer;
 }
@@ -296,7 +304,7 @@ footer .socials {
 }
 
 footer .socials a {
-  color: #fff;
+  color: #010101;
   margin: 1rem;
 }
 
@@ -310,7 +318,7 @@ footer .links {
 }
 
 footer .links a {
-  color: #fff;
+  color: #010101;
   padding: 0.7rem 1rem;
 }
 
@@ -356,7 +364,7 @@ footer .credit a {
   }
 
   .navbar .navbar-nav a {
-    color: var(--bg);
+    color: #010101;
     display: block;
     margin: 1.5rem;
     padding: 0.5rem;
@@ -369,6 +377,14 @@ footer .credit a {
 
   .navbar .navbar-nav a:hover::after {
     transform: scaleX(0.2);
+  }
+
+  .hero .content h1 {
+    padding-right: 25rem;
+  }
+
+  .hero .content p {
+    padding-right: 31rem;
   }
 
   .about .row {
@@ -414,5 +430,24 @@ footer .credit a {
 @media (max-width: 450px) {
   html {
     font-size: 55%;
+  }
+  .hero .content h1 {
+    position: relative;
+    bottom: 201px;
+    padding-right: 25rem;
+    font-size: 3.5rem;
+  }
+
+  .hero .content p {
+    position: relative;
+    bottom: 195px;
+    padding-right: 25rem;
+    font-size: 1.7rem;
+  }
+
+  .hero .content .cta {
+    position: relative;
+    bottom: 190px;
+    font-size: 1.9rem;
   }
 }
