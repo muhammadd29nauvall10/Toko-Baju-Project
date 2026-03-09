@@ -121,6 +121,59 @@ body {
   color: var(--text-main);
 }
 
+/* Navbar Shopping Cart */
+.shopping-cart {
+  position: absolute;
+  top: 100%;
+  right: -100%;
+  height: 100vh;
+  width: 35rem;
+  padding: 0 1.5rem;
+  background-color: #fff;
+  color: var(--primary);
+  transition: 0.3s;
+}
+
+.shopping-cart.active {
+  right: 0;
+}
+
+.shopping-cart .cart-item {
+  margin: 2rem 0;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px dashed #666;
+  position: relative;
+}
+
+.shopping-cart img {
+  height: 6rem;
+  border-radius: 50%;
+}
+
+.shopping-cart h3 {
+  font-size: 1.6rem;
+  padding-bottom: 0.5rem;
+  color: var(--text-main);
+}
+
+.shopping-cart .item-price {
+  font-size: 1.2rem;
+  color: var(--text-main);
+}
+
+.shopping-cart .remove-item {
+  position: absolute;
+  right: 1rem;
+  cursor: pointer;
+  color: var(--text-main);
+}
+.shopping-cart .remove-item:hover {
+  color: var(--primary);
+}
+
 /* Hero Section */
 .hero {
   min-height: 100vh;
@@ -238,8 +291,11 @@ body {
 }
 
 /* products Section */
+.products p {
+  text-align: center;
+}
 .products .jilbab {
-  margin-top: 2.1rem;
+  margin-top: 7rem;
 }
 .products .row {
   display: grid;
@@ -283,6 +339,33 @@ body {
 
 .products .product-image img {
   height: 25rem;
+}
+
+.products .product-content h3 {
+  font-size: 2rem;
+}
+
+/* ini hanya akan color outline saja */
+.products .product-stars {
+  font-size: 1.7rem;
+  padding: 0.8rem;
+  color: var(--primary);
+}
+
+/* karena svg jadi harus pake fill bisa full berubah warna */
+.products .product-stars .star-full {
+  fill: var(--primary);
+}
+
+.products .product-price {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.products .product-price span {
+  text-decoration: line-through;
+  font-weight: lighter;
+  font-size: 1rem;
 }
 
 /* Contact Section */
@@ -408,6 +491,7 @@ footer .credit a {
     display: inline-block;
   }
 
+  /* sebelumnya ngumpet disebelah kanan layar, ketika klik akan muncul */
   .navbar .navbar-nav {
     position: absolute;
     top: 100%;
