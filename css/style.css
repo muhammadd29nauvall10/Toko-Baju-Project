@@ -346,14 +346,26 @@ body {
 }
 
 /* ini hanya akan color outline saja */
-.products .product-stars {
+.products .product-stars,
+.modal-satu .product-stars,
+.modal-dua .product-stars,
+.modal-tiga .product-stars,
+.modal-empat .product-stars,
+.modal-lima .product-stars,
+.modal-enam .product-stars {
   font-size: 1.7rem;
   padding: 0.8rem;
   color: var(--primary);
 }
 
 /* karena svg jadi harus pake fill bisa full berubah warna */
-.products .product-stars .star-full {
+.products .product-stars .star-full,
+.modal-satu .product-stars .star-full,
+.modal-dua .product-stars .star-full,
+.modal-tiga .product-stars .star-full,
+.modal-empat .product-stars .star-full,
+.modal-lima .product-stars .star-full,
+.modal-enam .product-stars .star-full {
   fill: var(--primary);
 }
 

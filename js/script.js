@@ -35,6 +35,23 @@ document.querySelector("#shopping-cart-button").onclick = (e) => {
   e.preventDefault();
 };
 
+// Klik di luar elemen untuk nonaktif class
+const hm = document.querySelector("#hamburger-menu");
+const sb = document.querySelector("#search-button");
+const sc = document.querySelector("#shopping-cart-button");
+
+document.addEventListener("click", function (e) {
+  if (!hm.contains(e.target) && !navbarNav.contains(e.target)) {
+    navbarNav.classList.remove("active");
+  }
+  if (!sb.contains(e.target) && !searchForm.contains(e.target)) {
+    searchForm.classList.remove("active");
+  }
+  if (!sc.contains(e.target) && !shoppingCart.contains(e.target)) {
+    shoppingCart.classList.remove("active");
+  }
+});
+
 // Modal Box
 // id="item-detail-modal-empat"
 // class="item-detail-button-produk-empat"
@@ -96,4 +113,3 @@ itemDetailButtons.forEach((btn) => {
     }
   });
 });
-// kenapa langsung hilang? karena ketika kita klik icon eye otomatis semua nya masuk ke elemen modal (yang bg opacity nya agak transparan itu), nah tapi yang di produk atau text dll nya itu adalah modal container jadi gak bakal hilang kecuali tombol close
