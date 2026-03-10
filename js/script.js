@@ -35,19 +35,65 @@ document.querySelector("#shopping-cart-button").onclick = (e) => {
   e.preventDefault();
 };
 
-// Klik di luar elemen untuk nonaktif class
-const hm = document.querySelector("#hamburger-menu");
-const sb = document.querySelector("#search-button");
-const sc = document.querySelector("#shopping-cart-button");
+// Modal Box
+// id="item-detail-modal-empat"
+// class="item-detail-button-produk-empat"
 
-document.addEventListener("click", function (e) {
-  if (!hm.contains(e.target) && !navbarNav.contains(e.target)) {
-    navbarNav.classList.remove("active");
-  }
-  if (!sb.contains(e.target) && !searchForm.contains(e.target)) {
-    searchForm.classList.remove("active");
-  }
-  if (!sc.contains(e.target) && !shoppingCart.contains(e.target)) {
-    shoppingCart.classList.remove("active");
-  }
+/* 1. Menyeleksi semua elemen tombol menggunakan querySelectorAll.
+  Fungsi ini mengambil semua elemen yang memiliki class yang diawali dengan 'item-detail-button-produk-'.
+  Analogi: Kita mendata semua tombol "mata" yang ada di setiap produk sekaligus.
+*/
+const itemDetailButtons = document.querySelectorAll(
+  '[class^="item-detail-button-produk-"]'
+);
+
+/* 2. Melakukan perulangan menggunakan fungsi forEach.
+  Fungsi ini akan menjalankan perintah yang sama untuk setiap tombol yang sudah kita data tadi.
+  Analogi: Kita mendatangi satu per satu tombol tersebut untuk memberikan instruksi klik.
+*/
+itemDetailButtons.forEach((btn) => {
+  /* 3. Mengambil ID unik menggunakan fungsi split() dan pop().
+    - split('-'): Memotong nama class menjadi potongan kata berdasarkan tanda hubung (-).
+    - pop(): Mengambil potongan kata terakhir (misal: 'satu', 'dua', dst).
+    Analogi: Kita melihat "label" pada tombol untuk tahu ini tombol milik produk yang mana.
+  */
+  const produkId = btn.className.split("-").pop();
+
+  /* 4. Menyeleksi Modal yang sesuai menggunakan Template Literals (` `).
+    Kita menggabungkan teks '#item-detail-modal-' dengan variabel produkId yang baru kita ambil.
+    Analogi: Setelah tahu nomor produknya, kita cari kunci untuk membuka pintu modal yang tepat.
+  */
+  const targetModal = document.querySelector(`#item-detail-modal-${produkId}`);
+
+  // Menjalankan fungsi onclick
+  // Analogi: Instruksi apa yang harus dilakukan saat tombol diklik.
+  btn.onclick = (e) => {
+    // Mengubah properti display pada CSS menjadi flex agar modal muncul.
+    targetModal.style.display = "flex";
+    e.preventDefault(); // Mencegah link melompat ke atas halaman (komentar asli)
+  };
+
+  // click tombol close Modal Box
+  /* 5. Menyeleksi elemen di dalam elemen lain (Nested Selector).
+    Kita hanya mencari class .close-icon yang ada di dalam modal yang sedang aktif.
+    Analogi: Menutup pintu kamar dari dalam menggunakan tombol silang yang ada di kamar itu.
+  */
+  targetModal.querySelector(".close-icon").onclick = (e) => {
+    // Mengubah properti display menjadi none untuk menyembunyikan kembali modal.
+    targetModal.style.display = "none";
+    e.preventDefault();
+  };
+
+  // click di luar Modal Box
+  /* 6. Menggunakan Event Listener pada jendela browser (window).
+    Ini berfungsi untuk mendeteksi jika pengguna mengklik area transparan di luar kotak modal.
+    Analogi: Jika kamu mengetuk area di luar dinding kamar (overlay), maka kamar otomatis tertutup.
+  */
+  window.addEventListener("click", (e) => {
+    // Mengecek apakah area yang diklik tepat pada elemen modal (area transparan).
+    if (e.target === targetModal) {
+      targetModal.style.display = "none";
+    }
+  });
 });
+// kenapa langsung hilang? karena ketika kita klik icon eye otomatis semua nya masuk ke elemen modal (yang bg opacity nya agak transparan itu), nah tapi yang di produk atau text dll nya itu adalah modal container jadi gak bakal hilang kecuali tombol close
