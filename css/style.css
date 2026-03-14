@@ -176,7 +176,7 @@ body {
 
 /* Hero Section */
 .hero {
-  min-height: 70vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   margin-top: 5.6rem;
@@ -707,5 +707,6 @@ footer .credit a {
     top: 45.5%; */
     margin-top: 3.5rem;
     margin-left: 8.5rem;
+    margin-bottom: 49rem;
   }
 }
