@@ -176,7 +176,7 @@ body {
 
 /* Hero Section */
 .hero {
-  min-height: 100vh;
+  min-height: 70vh;
   display: flex;
   align-items: center;
   margin-top: 5.6rem;
@@ -614,6 +614,10 @@ footer .credit a {
     right: 2rem;
   }
 
+  .hero {
+    min-height: auto;
+  }
+
   .hero .content h1 {
     padding-right: 25rem;
   }
@@ -669,5 +673,39 @@ footer .credit a {
 @media (max-width: 450px) {
   html {
     font-size: 55%;
+  }
+
+  .hero {
+    min-height: auto;
+  }
+
+  .hero .content h1 {
+    /* padding right agar tidak membuat baris baru pas satu kata, jadi misal dua kata barus buat baris baru */
+    padding-right: 0;
+    font-size: 3.5rem;
+    /* position: absolute;
+    left: 3%;
+    top: 10%; */
+    padding-top: 5rem;
+    text-align: center;
+  }
+
+  .hero .content p {
+    padding-right: 0;
+    font-size: 2.5rem;
+    /* position: absolute;
+    left: 3%;
+    top: 30.5%; */
+    padding-top: 3rem;
+    text-align: center;
+  }
+
+  .hero .content .cta {
+    font-size: 2.5rem;
+    /* position: absolute;
+    left: 26.5%;
+    top: 45.5%; */
+    margin-top: 3.5rem;
+    margin-left: 8.5rem;
   }
 }
