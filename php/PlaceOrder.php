@@ -8,7 +8,8 @@ require_once '../vendor/autoload.php';
 
 // 1. Konfigurasi Midtrans
 // Set Server Key milikmu
-\Midtrans\Config::$serverKey = 'Mid-server-SdGfxTV34L8unPyXE03o356V';
+// Mid-server-SdGfxTV34L8unPyXE03o356V
+\Midtrans\Config::$serverKey = '';
 // Set ke false untuk Sandbox, true untuk Production
 \Midtrans\Config::$isProduction = false;
 \Midtrans\Config::$isSanitized = true;
