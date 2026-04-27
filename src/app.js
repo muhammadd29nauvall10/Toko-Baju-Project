@@ -91,19 +91,18 @@ document.addEventListener("alpine:init", () => {
   });
 });
 
-// Logika Validasi Form & Kirim Data
+// Logika Validasi Form & Kirim Data ke Midtrans
 document.addEventListener("DOMContentLoaded", () => {
   const checkoutButton = document.querySelector(".checkout-button");
   const checkoutForm = document.querySelector("#checkoutForm");
 
   if (!checkoutForm || !checkoutButton) return;
 
-  // 1. Fungsi Validasi Tombol
+  // 1. Fungsi Validasi Tombol (Aktif jika form diisi)
   checkoutForm.addEventListener("keyup", () => {
     let allFilled = true;
     for (let i = 0; i < checkoutForm.elements.length; i++) {
       const el = checkoutForm.elements[i];
-      // Abaikan tombol submit dan input hidden
       if (el.type !== "submit" && el.type !== "hidden") {
         if (el.value.trim().length === 0) {
           allFilled = false;
@@ -121,39 +120,59 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // 2. Fungsi Kirim Pesan ke WA
-  checkoutButton.addEventListener("click", function (e) {
+  // 2. Fungsi Kirim Data ke PlaceOrder.php
+  checkoutButton.addEventListener("click", async function (e) {
     e.preventDefault();
+
     const formData = new FormData(checkoutForm);
-    const data = Object.fromEntries(formData.entries());
 
     try {
-      const message = formatMessage(data);
-      window.open(
-        "https://wa.me/62895322269467?text=" + encodeURIComponent(message)
-      );
+      const response = await fetch("php/PlaceOrder.php", {
+        method: "POST",
+        body: formData,
+      });
+
+      const token = await response.text();
+
+      if (
+        token.includes("error") ||
+        token.includes("Warning") ||
+        token.includes("Fatal")
+      ) {
+        console.error("Backend Error:", token);
+        alert("Terjadi kesalahan pada server. Cek konsol untuk detail.");
+      } else {
+        // --- INTEGRASI CALLBACK MIDTRANS START ---
+        window.snap.pay(token.trim(), {
+          onSuccess: function (result) {
+            /* Implementasi jika pembayaran berhasil */
+            alert("Pembayaran Berhasil!");
+            console.log(result);
+            // Opsional: Kosongkan keranjang setelah sukses
+            // Alpine.store('cart').items = [];
+            // Alpine.store('cart').total = 0;
+            // Alpine.store('cart').quantity = 0;
+          },
+          onPending: function (result) {
+            /* Implementasi jika pembayaran tertunda (misal: Alfamart/Indomaret/VA) */
+            alert("Menunggu pembayaran Anda!");
+            console.log(result);
+          },
+          onError: function (result) {
+            /* Implementasi jika pembayaran gagal */
+            alert("Pembayaran Gagal!");
+            console.log(result);
+          },
+          onClose: function () {
+            /* Implementasi jika user menutup popup tanpa bayar */
+            alert("Anda menutup jendela pembayaran sebelum selesai.");
+          },
+        });
+        // --- INTEGRASI CALLBACK MIDTRANS END ---
+      }
     } catch (err) {
-      console.error(err);
-      alert("Gagal memproses pesanan. Pastikan keranjang tidak kosong.");
+      console.log("Fetch Error:", err.message);
+      alert("Gagal terhubung ke server.");
     }
   });
 });
-
-// Helper untuk format pesan WA
-const formatMessage = (obj) => {
-  const items = JSON.parse(obj.items);
-  return `*Data Customer*
-Nama: ${obj.name}
-Email: ${obj.email}
-No HP: ${obj.phone}
-
-*Data Pesanan*
-${items
-  .map(
-    (item) => `- ${item.name} (${item.quantity} x ${window.rupiah(item.price)})`
-  )
-  .join("\n")}
-
-*TOTAL: ${window.rupiah(obj.total)}*
-Terima Kasih.`;
-};
